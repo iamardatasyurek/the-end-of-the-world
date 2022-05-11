@@ -4,17 +4,20 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerController))]
-public class Player : MonoBehaviour
+public class Player : LivingEntity
 {
     PlayerController playerController;
     [SerializeField] private float runSpeed = 10f, walkSpeed = 5f;
     [SerializeField] private float mouseSensitivity = 3.5f;
     [SerializeField] private float jumpForce = 255f;
     private float verticalLookRotation;
+    GunController gunController;
     // Start is called before the first frame update
-    void Start()
+    protected override void Start()
     {
+        base.Start();
         playerController = GetComponent<PlayerController>();
+        gunController = GetComponent<GunController>();
     }
 
     // Update is called once per frame
@@ -23,6 +26,7 @@ public class Player : MonoBehaviour
         movementInput();
         mouseInput();
         jumpInput();
+        weaponInput();
     }
 
     private void jumpInput()
@@ -52,5 +56,13 @@ public class Player : MonoBehaviour
             velocity *= walkSpeed;
         velocity = transform.TransformDirection(velocity);
         playerController.setVelocity(velocity);
+    }
+
+    void weaponInput()
+    {
+        if (Input.GetMouseButtonDown(0))
+        {
+            gunController.shoot();
+        }
     }
 }

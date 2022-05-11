@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3317940}
   - component: {fileID: 2368140}
   - component: {fileID: 6477760}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BLD_Bridge_B_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,7 +110,7 @@ GameObject:
   - component: {fileID: 3386838}
   - component: {fileID: 2391428}
   - component: {fileID: 6405362}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BLD_Bridge_B_LOD1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -206,7 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 495248}
   - component: {fileID: 20585150}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BLD_Bridge_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -270,7 +270,7 @@ GameObject:
   - component: {fileID: 3358216}
   - component: {fileID: 2385180}
   - component: {fileID: 6494626}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BLD_Bridge_B_LOD2
   m_TagString: Untagged
   m_Icon: {fileID: 0}

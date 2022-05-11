@@ -66,7 +66,6 @@ public class PlayerController : MonoBehaviour
             grounded = true;
         else
             grounded = false;
-
-
     }
+    
 }
