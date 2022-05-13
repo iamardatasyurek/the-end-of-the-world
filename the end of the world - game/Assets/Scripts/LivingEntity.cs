@@ -19,8 +19,9 @@ public class LivingEntity : MonoBehaviour, IDamageable
     {
         //Kan cikti
 
-        print(gameObject.name);
+        
         health -= damage;
+        print(gameObject.name+" "+health);
         if (health <= 0 && !dead) {
             dead = true;
             animator.SetBool("isDead", true);
@@ -35,5 +36,6 @@ public class LivingEntity : MonoBehaviour, IDamageable
         health = 0;      
         GameObject.Destroy(this.gameObject);
     }
+
     
 }
