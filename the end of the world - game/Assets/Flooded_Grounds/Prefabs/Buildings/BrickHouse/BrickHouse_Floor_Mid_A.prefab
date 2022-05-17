@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3317802}
   - component: {fileID: 2330156}
   - component: {fileID: 6590194}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: BrickHouse_Floor_Mid_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}

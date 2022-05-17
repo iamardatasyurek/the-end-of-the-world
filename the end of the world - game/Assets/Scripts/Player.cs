@@ -12,7 +12,12 @@ public class Player : LivingEntity
     [SerializeField] private float jumpForce = 255f;
     private float verticalLookRotation;
     GunController gunController;
-    // Start is called before the first frame update
+
+    bool haveGun = false;
+    bool haveRedKey = false;
+    bool haveBlueKey = false;
+
+
     protected override void Start()
     {
         base.Start();
@@ -65,4 +70,44 @@ public class Player : LivingEntity
             gunController.shoot();
         }
     }
+
+    public void risesHealth()
+    {
+        if (health + 10 >= startingHealth)
+            health = startingHealth;
+        else
+            health += 10;
+        print("Player Health : " + health);
+    }
+
+    public float getHealth()
+    {
+        return health;
+    }
+
+    public bool getHaveGun()
+    {
+        return haveGun;
+    }
+    public bool getHaveRedKey()
+    {
+        return haveRedKey;
+    }
+    public bool getHaveBlueKey()
+    {
+        return haveBlueKey;
+    }
+    public void setHaveGun(bool b)
+    {
+        haveGun = b;
+    }
+    public void setHaveRedKey(bool b)
+    {
+        haveRedKey = b;
+    }
+    public void setHaveBlueKey(bool b)
+    {
+        haveBlueKey = b;
+    }
+
 }

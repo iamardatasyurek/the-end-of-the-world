@@ -110,7 +110,7 @@ public class Ufo : MonoBehaviour
     void Shoot()
     {
 
-        float random = Random.Range(-5f * playerRadius, 5f * playerRadius);
+        float random = Random.Range(-2f * playerRadius, 2f * playerRadius);
         Vector3 randomVector3 = new Vector3(random, random, random);
         Vector3 directionToPlayer = ((playerTransform.position + randomVector3) - transform.position).normalized;
 
@@ -124,7 +124,7 @@ public class Ufo : MonoBehaviour
             print(hit.collider.gameObject.name);
             IDamageable damageablePlayer = hit.collider.GetComponent<IDamageable>();
             if (damageablePlayer != null)
-                damageablePlayer.TakeHit(10, hit.point);
+                damageablePlayer.TakeHit(100, hit.point);
         }
         laser.SetPosition(1, muzzle.position + (directionToPlayer * 110));
 

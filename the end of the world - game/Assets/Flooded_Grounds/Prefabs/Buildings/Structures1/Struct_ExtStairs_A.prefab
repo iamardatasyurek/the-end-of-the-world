@@ -206,7 +206,7 @@ GameObject:
   m_Component:
   - component: {fileID: 467182}
   - component: {fileID: 20511700}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Struct_ExtStairs_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}

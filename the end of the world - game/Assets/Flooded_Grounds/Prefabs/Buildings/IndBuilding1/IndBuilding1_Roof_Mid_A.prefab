@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3396582}
   - component: {fileID: 2398590}
   - component: {fileID: 6511502}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: IndBuilding1_Roof_Mid_A
   m_TagString: Untagged
   m_Icon: {fileID: 0}

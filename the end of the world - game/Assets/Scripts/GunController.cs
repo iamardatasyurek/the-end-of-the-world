@@ -7,11 +7,23 @@ public class GunController : MonoBehaviour
     public Gun testgun;
     Gun equippedGun;
     [SerializeField] Transform weaponHold;
+    [SerializeField] Player player;
+    int count = 0;
 
     private void Start()
     {
-        equipGun(testgun);
+        //equipGun(testgun);
+        player = GameObject.FindObjectOfType<Player>();
     }
+
+    private void Update()
+    {
+        if (player.getHaveGun() == true && count == 0) {           
+            equipGun(testgun);
+            count++;
+        }
+    }
+
     void equipGun(Gun newGun)
     {
         if (equippedGun != null)

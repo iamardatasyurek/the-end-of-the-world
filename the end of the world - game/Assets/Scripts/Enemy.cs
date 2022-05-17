@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.UI;
 
 public class Enemy : LivingEntity
 {
@@ -26,6 +27,9 @@ public class Enemy : LivingEntity
     LineRenderer laser;
     [SerializeField] AudioSource laserSound;
 
+    [SerializeField] GameObject healthBarUI;
+    [SerializeField] Slider slider;
+
     private void Awake()
     {
         playerTransform = GameObject.Find("Player").transform;
@@ -42,6 +46,8 @@ public class Enemy : LivingEntity
         }
         laser = GetComponent<LineRenderer>();
         enemySound.Play();
+
+        slider.value = sliderValue();
        
     }
 
@@ -61,7 +67,9 @@ public class Enemy : LivingEntity
             if (!playerInSightRange && !playerInAttackRange) Patroling();
             if (playerInSightRange && !playerInAttackRange) ChasePlayer();
             if (playerInSightRange && playerInAttackRange) AttackPlayer();
-        }      
+        }
+
+        slider.value = sliderValue();
 
     }
 
@@ -142,6 +150,11 @@ public class Enemy : LivingEntity
         laser.enabled = true;
         yield return timeBetweenAttacks;
         laser.enabled = false;
+    }
+
+    float sliderValue()
+    {
+        return health / startingHealth;
     }
 
 }

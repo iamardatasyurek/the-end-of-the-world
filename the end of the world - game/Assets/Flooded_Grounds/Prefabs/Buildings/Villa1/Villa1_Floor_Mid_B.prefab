@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3346600}
   - component: {fileID: 2351392}
   - component: {fileID: 6591316}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Villa1_Floor_Mid_B
   m_TagString: Untagged
   m_Icon: {fileID: 0}
