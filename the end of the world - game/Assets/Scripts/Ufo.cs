@@ -22,6 +22,7 @@ public class Ufo : MonoBehaviour
     [SerializeField] float timeBetweenAttacks =10f;
     bool alreadyAttacked;
 
+    State currentState;
     private void Start()
     {
         Vector3[] wayPoints = new Vector3[pathHolder.childCount];
@@ -39,6 +40,8 @@ public class Ufo : MonoBehaviour
             playerRadius = playerTransform.GetComponent<CapsuleCollider>().radius;
         }
         laser = GetComponent<LineRenderer>();
+
+        currentState = State.walking;
     }
 
     private void Update()
@@ -67,11 +70,24 @@ public class Ufo : MonoBehaviour
             {
                 if(!Physics.Linecast(transform.position, playerTransform.position, roofMask))
                 {
+                    currentState = State.shooting;
+                    //Vector3 directionToPlayer = ((playerTransform.position) - transform.position).normalized;
+                    //print(playerTransform.position);
+                    //print(transform.position);
+                    //Debug.DrawLine(muzzle.position, playerTransform.position, Color.yellow); 
                     return true;
                 }
             }
         }
+        currentState = State.walking;
+
+
+
+
+        
+
         return false;
+        
     }
 
     IEnumerator followPath(Vector3[] wayPoints)
@@ -79,7 +95,7 @@ public class Ufo : MonoBehaviour
         transform.position = wayPoints[0];
         int targetWayPointIndex = 1;
         Vector3 targetWayPoint = wayPoints[targetWayPointIndex];
-        while (true)
+        while (currentState == State.walking)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetWayPoint, speed * Time.deltaTime);
             if (transform.position == targetWayPoint)
@@ -94,7 +110,7 @@ public class Ufo : MonoBehaviour
 
     void AttackPlayer()
     {
-        if (!alreadyAttacked)
+        if (currentState == State.shooting && !alreadyAttacked)
         {
             Shoot();
             alreadyAttacked = true;
@@ -110,15 +126,13 @@ public class Ufo : MonoBehaviour
     void Shoot()
     {
 
-        float random = Random.Range(-2f * playerRadius, 2f * playerRadius);
+        float random = Random.Range(-5f * playerRadius, 5f * playerRadius);
         Vector3 randomVector3 = new Vector3(random, random, random);
-        Vector3 directionToPlayer = ((playerTransform.position + randomVector3) - transform.position).normalized;
-
-        Ray ray = new Ray(muzzle.position, directionToPlayer);
+        Vector3 playerAddRandom = playerTransform.position + randomVector3;   
         RaycastHit hit;
 
         laser.SetPosition(0, muzzle.position);
-        if (Physics.Raycast(ray, out hit, 110, whatIsPlayer))
+        if (Physics.Linecast(muzzle.position, playerAddRandom, out hit, whatIsPlayer))
         {
             print("vurulduk");
             print(hit.collider.gameObject.name);
@@ -126,7 +140,7 @@ public class Ufo : MonoBehaviour
             if (damageablePlayer != null)
                 damageablePlayer.TakeHit(100, hit.point);
         }
-        laser.SetPosition(1, muzzle.position + (directionToPlayer * 110));
+        laser.SetPosition(1, playerAddRandom);
 
         StartCoroutine(ShootEffect());
     }
@@ -153,6 +167,10 @@ public class Ufo : MonoBehaviour
         Gizmos.DrawRay(transform.position, -transform.up* viewDistance);
     }
 
-
+    enum State
+    {
+        walking,shooting
+    }
 
 }
+

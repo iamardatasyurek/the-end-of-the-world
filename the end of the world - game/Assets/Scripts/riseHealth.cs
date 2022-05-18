@@ -13,7 +13,7 @@ public class riseHealth : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && player.getHealth()<100)
+        if (other.CompareTag("Player") && player.getHealth()< player.getStartingHealth())
         {
             player.risesHealth();
             Destroy(this.gameObject);

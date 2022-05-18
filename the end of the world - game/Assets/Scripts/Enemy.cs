@@ -135,7 +135,7 @@ public class Enemy : LivingEntity
             print(hit.collider.gameObject.name);
             IDamageable damageablePlayer = hit.collider.GetComponent<IDamageable>();
             if(damageablePlayer != null)
-                damageablePlayer.TakeHit(1,hit.point);
+                damageablePlayer.TakeHit(4,hit.point);
             animator.SetBool("isAttack", true);
         }
         laser.SetPosition(1, muzzle.position + (directionToPlayer * 50));

@@ -17,7 +17,6 @@ public class Player : LivingEntity
     bool haveRedKey = false;
     bool haveBlueKey = false;
 
-
     protected override void Start()
     {
         base.Start();
@@ -32,6 +31,7 @@ public class Player : LivingEntity
         mouseInput();
         jumpInput();
         weaponInput();
+        weaponHiddenInput();
     }
 
     private void jumpInput()
@@ -71,6 +71,14 @@ public class Player : LivingEntity
         }
     }
 
+    void weaponHiddenInput()
+    {
+        if (Input.GetKeyDown(KeyCode.X))
+        {
+            gunController.hiddenGun();
+        }
+    }
+
     public void risesHealth()
     {
         if (health + 10 >= startingHealth)
@@ -79,12 +87,14 @@ public class Player : LivingEntity
             health += 10;
         print("Player Health : " + health);
     }
-
     public float getHealth()
     {
         return health;
     }
-
+    public float getStartingHealth()
+    {
+        return startingHealth;
+    }
     public bool getHaveGun()
     {
         return haveGun;
@@ -97,17 +107,17 @@ public class Player : LivingEntity
     {
         return haveBlueKey;
     }
-    public void setHaveGun(bool b)
+    public void setHaveGun(bool haveGun)
     {
-        haveGun = b;
+        this.haveGun = haveGun;
     }
-    public void setHaveRedKey(bool b)
+    public void setHaveRedKey(bool haveRedKey)
     {
-        haveRedKey = b;
+        this.haveRedKey = haveRedKey;
     }
-    public void setHaveBlueKey(bool b)
+    public void setHaveBlueKey(bool haveBlueKey)
     {
-        haveBlueKey = b;
+        this.haveBlueKey = haveBlueKey;
     }
 
 }

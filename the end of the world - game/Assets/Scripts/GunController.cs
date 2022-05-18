@@ -10,6 +10,9 @@ public class GunController : MonoBehaviour
     [SerializeField] Player player;
     int count = 0;
 
+    [SerializeField] GameObject ammoUI;
+    
+
     private void Start()
     {
         //equipGun(testgun);
@@ -38,5 +41,26 @@ public class GunController : MonoBehaviour
         {
             equippedGun.shoot();
         }
+    }
+
+    public void hiddenGun()
+    {
+        if (equippedGun != null)
+        {
+            if(player.getHaveGun() == true)
+            {
+                equippedGun.hidden();
+                player.setHaveGun(false);
+                ammoUI.SetActive(false);
+            }
+            else
+            {
+                equippedGun.hidden();
+                player.setHaveGun(true);
+                ammoUI.SetActive(true);
+            }
+            
+        }
+        
     }
 }

@@ -9,9 +9,11 @@ public class Gun : MonoBehaviour
     [SerializeField] float arrowSpeed = 10;
     [SerializeField] float delay = 2.5f;
     float nextShootTime;
-    float ammo = 10;
+    float ammo = 15;
     Animator animator;
     [SerializeField] AudioSource fireSound;
+
+    bool isHidden = false;
 
     private void Start()
     {
@@ -33,6 +35,19 @@ public class Gun : MonoBehaviour
         }
     }
 
+    public void hidden()
+    {
+        if (isHidden == false)
+        {
+            gameObject.SetActive(false);
+            isHidden = true;
+        }
+        else
+        {
+            gameObject.SetActive(true);
+            isHidden = false;
+        }
+    }
     public void addAmmo()
     {
         int addAmmo = Random.Range(4, 10);
