@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 [RequireComponent(typeof(PlayerController))]
 public class Player : LivingEntity
@@ -32,6 +33,8 @@ public class Player : LivingEntity
         jumpInput();
         weaponInput();
         weaponHiddenInput();
+        if (getHealth() < 0)
+            SceneManager.LoadScene("Scene_A");
     }
 
     private void jumpInput()
@@ -81,10 +84,11 @@ public class Player : LivingEntity
 
     public void risesHealth()
     {
-        if (health + 10 >= startingHealth)
+        int randomHealth = UnityEngine.Random.Range(10, 20);
+        if (health + randomHealth >= startingHealth)
             health = startingHealth;
         else
-            health += 10;
+            health += randomHealth;
         print("Player Health : " + health);
     }
     public float getHealth()

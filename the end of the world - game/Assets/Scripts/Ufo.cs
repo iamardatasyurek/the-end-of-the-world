@@ -55,6 +55,7 @@ public class Ufo : MonoBehaviour
         {
             spotLight.color = originColor;
             laser.ResetBounds();
+            currentState = State.walking;
         }
     }
 
@@ -71,21 +72,11 @@ public class Ufo : MonoBehaviour
                 if(!Physics.Linecast(transform.position, playerTransform.position, roofMask))
                 {
                     currentState = State.shooting;
-                    //Vector3 directionToPlayer = ((playerTransform.position) - transform.position).normalized;
-                    //print(playerTransform.position);
-                    //print(transform.position);
-                    //Debug.DrawLine(muzzle.position, playerTransform.position, Color.yellow); 
                     return true;
                 }
             }
         }
         currentState = State.walking;
-
-
-
-
-        
-
         return false;
         
     }

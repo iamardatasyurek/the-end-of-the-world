@@ -34,9 +34,11 @@ public class FoundedObjects : MonoBehaviour
 
         }
     }
+
+    enum foundWhat
+    {
+        RedKey, BlueKey, Crossbow
+    }
 }
 
-enum foundWhat
-{
-    RedKey, BlueKey, Crossbow
-}
+
