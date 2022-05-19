@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: 2985347599130529714}
   - component: {fileID: 2985347599130529717}
   - component: {fileID: 424622937}
+  - component: {fileID: 7089779164383353138}
   - component: {fileID: 2985347599130529716}
   - component: {fileID: 2985347599130529719}
   - component: {fileID: 839849836}
@@ -116,6 +117,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   testgun: {fileID: -7276415980581169193, guid: 4a36f3a1e6f34494f8059f8dd3df1777, type: 3}
   weaponHold: {fileID: 1520460377}
+  player: {fileID: 0}
+  ammoUI: {fileID: 0}
+--- !u!114 &7089779164383353138
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2985347599130529718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 703ebfcec41ad4742aa136d58a24fcde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pickupMask:
+    serializedVersion: 2
+    m_Bits: 0
+  playerCamera: {fileID: 0}
+  pickupTarget: {fileID: 0}
+  pickupRange: 0
 --- !u!54 &2985347599130529716
 Rigidbody:
   m_ObjectHideFlags: 0

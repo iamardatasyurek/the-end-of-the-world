@@ -22,7 +22,6 @@ public class Ufo : MonoBehaviour
     [SerializeField] float timeBetweenAttacks =10f;
     bool alreadyAttacked;
 
-    State currentState;
     private void Start()
     {
         Vector3[] wayPoints = new Vector3[pathHolder.childCount];
@@ -40,8 +39,6 @@ public class Ufo : MonoBehaviour
             playerRadius = playerTransform.GetComponent<CapsuleCollider>().radius;
         }
         laser = GetComponent<LineRenderer>();
-
-        currentState = State.walking;
     }
 
     private void Update()
@@ -55,7 +52,6 @@ public class Ufo : MonoBehaviour
         {
             spotLight.color = originColor;
             laser.ResetBounds();
-            currentState = State.walking;
         }
     }
 
@@ -70,13 +66,11 @@ public class Ufo : MonoBehaviour
             if(anglePlayerAndUfo < viewAngle / 1.5f)
             {
                 if(!Physics.Linecast(transform.position, playerTransform.position, roofMask))
-                {
-                    currentState = State.shooting;
+                {                 
                     return true;
                 }
             }
         }
-        currentState = State.walking;
         return false;
         
     }
@@ -86,7 +80,7 @@ public class Ufo : MonoBehaviour
         transform.position = wayPoints[0];
         int targetWayPointIndex = 1;
         Vector3 targetWayPoint = wayPoints[targetWayPointIndex];
-        while (currentState == State.walking)
+        while (true)
         {
             transform.position = Vector3.MoveTowards(transform.position, targetWayPoint, speed * Time.deltaTime);
             if (transform.position == targetWayPoint)
@@ -101,7 +95,7 @@ public class Ufo : MonoBehaviour
 
     void AttackPlayer()
     {
-        if (currentState == State.shooting && !alreadyAttacked)
+        if (!alreadyAttacked)
         {
             Shoot();
             alreadyAttacked = true;
@@ -157,11 +151,5 @@ public class Ufo : MonoBehaviour
 
         Gizmos.DrawRay(transform.position, -transform.up* viewDistance);
     }
-
-    enum State
-    {
-        walking,shooting
-    }
-
 }
 
