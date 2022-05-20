@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class BurnDeadBody : MonoBehaviour
 {
+    [SerializeField] LoaderScreen loaderScreen;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("DeadBody"))
@@ -17,6 +18,6 @@ public class BurnDeadBody : MonoBehaviour
 
     void endGame()
     {
-        SceneManager.LoadScene("Scene_A");
+        loaderScreen.LoadScreenMenu(0);
     }
 }

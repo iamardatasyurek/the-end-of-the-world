@@ -18,6 +18,8 @@ public class Player : LivingEntity
     bool haveRedKey = false;
     bool haveBlueKey = false;
 
+    [SerializeField] LoaderScreen loaderScreen;
+
     protected override void Start()
     {
         base.Start();
@@ -34,9 +36,8 @@ public class Player : LivingEntity
         weaponInput();
         weaponHiddenInput();
         if (getHealth() < 0)
-            SceneManager.LoadScene("Scene_A");
+            loaderScreen.LoadScreenMenu(2);
     }
-
     private void jumpInput()
     {
         if (Input.GetButtonDown("Jump"))
@@ -47,11 +48,14 @@ public class Player : LivingEntity
 
     private void mouseInput()
     {
-        Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"),Input.GetAxis("Mouse Y"));
-        mouseDelta *= mouseSensitivity;
-        playerController.updateMouseLookX(mouseDelta);
-        verticalLookRotation -= mouseDelta.y * mouseSensitivity;
-        playerController.updateMouseLookY(verticalLookRotation);
+        if (!PauseMenuController.isPaused)
+        {
+            Vector2 mouseDelta = new Vector2(Input.GetAxis("Mouse X"), Input.GetAxis("Mouse Y"));
+            mouseDelta *= mouseSensitivity;
+            playerController.updateMouseLookX(mouseDelta);
+            verticalLookRotation -= mouseDelta.y * mouseSensitivity;
+            playerController.updateMouseLookY(verticalLookRotation);
+        }       
     }
 
     private void movementInput()

@@ -13,15 +13,16 @@ public class Gun : MonoBehaviour
     Animator animator;
     [SerializeField] AudioSource fireSound;
 
-    bool isHidden = false;
+    bool isHidden;
 
     private void Start()
     {
         animator = GetComponent<Animator>();
+        isHidden = false;
     }
     public void shoot()
     {
-        if (ammo > 0) { 
+        if (ammo > 0 && !isHidden) { 
             if (Time.time > nextShootTime) {
                 animator.SetBool("Fire", true);
                 nextShootTime = Time.time + delay;
