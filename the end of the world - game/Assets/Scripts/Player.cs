@@ -18,7 +18,7 @@ public class Player : LivingEntity
     bool haveRedKey = false;
     bool haveBlueKey = false;
 
-    [SerializeField] LoaderScreen loaderScreen;
+    
 
     protected override void Start()
     {
@@ -35,8 +35,9 @@ public class Player : LivingEntity
         jumpInput();
         weaponInput();
         weaponHiddenInput();
-        if (getHealth() < 0)
-            loaderScreen.LoadScreenMenu(2);
+        flashlight();
+        if (getHealth() <= 0)
+            playerController.diePlayer(2);
     }
     private void jumpInput()
     {
@@ -83,6 +84,14 @@ public class Player : LivingEntity
         if (Input.GetKeyDown(KeyCode.X))
         {
             gunController.hiddenGun();
+        }
+    }
+
+    void flashlight()
+    {
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            playerController.useFlashlight();
         }
     }
 

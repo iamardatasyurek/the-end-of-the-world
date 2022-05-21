@@ -6,12 +6,14 @@ using UnityEngine.SceneManagement;
 public class BurnDeadBody : MonoBehaviour
 {
     [SerializeField] LoaderScreen loaderScreen;
+    [SerializeField] GameObject circleFire;
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("DeadBody"))
         {
-            Destroy(other.gameObject,2f);
-            Invoke("endGame", 4f);
+            circleFire.SetActive(true);
+            Destroy(other.gameObject,6.5f);
+            Invoke("endGame", 9f);
                
         }
     }

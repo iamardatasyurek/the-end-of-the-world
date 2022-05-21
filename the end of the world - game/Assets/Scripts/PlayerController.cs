@@ -12,6 +12,9 @@ public class PlayerController : MonoBehaviour
     float playerLenght;
     Collider capsule;
     [SerializeField] LayerMask groundMask;
+    [SerializeField] LoaderScreen loaderScreen;
+    [SerializeField] GameObject flashlight;
+    bool isOpen = false;
     
     // Start is called before the first frame update
     void Start()
@@ -66,6 +69,25 @@ public class PlayerController : MonoBehaviour
             grounded = true;
         else
             grounded = false;
+    }
+
+    public void diePlayer(int index)
+    {
+        loaderScreen.LoadScreenMenu(index);
+    }
+    public void useFlashlight()
+    {
+        if (isOpen == false)
+        {
+            flashlight.SetActive(true);
+            
+            isOpen = true;
+        }
+        else
+        {
+            flashlight.SetActive(false);
+            isOpen = false;
+        }
     }
     
 }

@@ -12,7 +12,8 @@ public class UIControl : MonoBehaviour
     [SerializeField] TMP_Text health;
     [SerializeField] TMP_Text ammo;
 
-    [SerializeField] Image crossbow;
+    //[SerializeField] Image crossbow;
+    [SerializeField] GameObject crossbow;
     [SerializeField] Image redKey;
     [SerializeField] Image blueKey;
 
@@ -23,7 +24,8 @@ public class UIControl : MonoBehaviour
 
         updateValues();
 
-        crossbow.enabled = false;
+        //crossbow.enabled = false;
+        crossbow.SetActive(false);
         redKey.enabled = false;
         blueKey.enabled = false;
 
@@ -51,8 +53,9 @@ public class UIControl : MonoBehaviour
     void activatedImages()
     {
         if(player.getHaveGun() == true)
-            crossbow.enabled = true;
-        if(player.getHaveRedKey() == true)
+            //crossbow.enabled = true;
+            crossbow.SetActive(true);
+        if (player.getHaveRedKey() == true)
             redKey.enabled = true;
         if(player.getHaveBlueKey() == true)
             blueKey.enabled = true;
