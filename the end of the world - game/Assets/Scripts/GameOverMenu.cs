@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 public class GameOverMenu : MonoBehaviour
 {
     [SerializeField] LoaderScreen loaderScreen;
+
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
     public void restart()
     {
         loaderScreen.LoadScreenMenu(1);

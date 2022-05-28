@@ -33,22 +33,21 @@ public class Enemy : LivingEntity
     private void Awake()
     {
         playerTransform = GameObject.Find("Player").transform;
-        agent = GetComponent<NavMeshAgent>();
-        
+        agent = GetComponent<NavMeshAgent>();       
     }
 
     protected override void Start()
     {
         base.Start();
+
         if(playerTransform != null)
         {
             playerRadius = playerTransform.GetComponent<CapsuleCollider>().radius;
         }
+
         laser = GetComponent<LineRenderer>();
         enemySound.Play();
-
-        slider.value = sliderValue();
-       
+        slider.value = sliderValue();     
     }
 
     private void Update()
@@ -58,7 +57,7 @@ public class Enemy : LivingEntity
 
         if (dead)
         {
-            playerInAttackRange = false;
+            playerInAttackRange = true;
             playerInSightRange = false;
             walkPointSet = false;
         }
@@ -70,7 +69,6 @@ public class Enemy : LivingEntity
         }
 
         slider.value = sliderValue();
-
     }
 
     void Patroling() 
@@ -118,9 +116,6 @@ public class Enemy : LivingEntity
 
     void Shoot()
     {
-        // e?er enemy can? 0 sa ate? edemesin animasyonu engelliyor ate? etmesi
-
-
         float random = Random.Range(-2 * playerRadius, 2f * playerRadius);
         Vector3 randomVector3 = new Vector3(random, random, random);
         Vector3 directionToPlayer = ((playerTransform.position +randomVector3) - transform.position).normalized;
@@ -131,8 +126,6 @@ public class Enemy : LivingEntity
         laser.SetPosition(0, muzzle.position);
         if (Physics.Raycast(ray, out hit, 50, whatIsPlayer))
         {
-            print("vurulduk");
-            print(hit.collider.gameObject.name);
             IDamageable damageablePlayer = hit.collider.GetComponent<IDamageable>();
             if(damageablePlayer != null)
                 damageablePlayer.TakeHit(4,hit.point);
@@ -140,8 +133,7 @@ public class Enemy : LivingEntity
         }
         laser.SetPosition(1, muzzle.position + (directionToPlayer * 50));
 
-        StartCoroutine(ShootEffect());
-        
+        StartCoroutine(ShootEffect());     
     }
 
     IEnumerator ShootEffect()

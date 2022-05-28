@@ -16,9 +16,7 @@ public class Player : LivingEntity
 
     bool haveGun = false;
     bool haveRedKey = false;
-    bool haveBlueKey = false;
-
-    
+    bool haveBlueKey = false;   
 
     protected override void Start()
     {
@@ -27,7 +25,6 @@ public class Player : LivingEntity
         gunController = GetComponent<GunController>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         movementInput();
@@ -36,6 +33,7 @@ public class Player : LivingEntity
         weaponInput();
         weaponHiddenInput();
         flashlight();
+        godMode();
         if (getHealth() <= 0)
             playerController.diePlayer(2);
     }
@@ -95,6 +93,16 @@ public class Player : LivingEntity
         }
     }
 
+    void godMode()
+    {
+        if (Input.GetKeyDown(KeyCode.G))
+        {
+            health = 1000;
+            walkSpeed = 8;
+            runSpeed = 16;
+        }
+    }
+
     public void risesHealth()
     {
         int randomHealth = UnityEngine.Random.Range(10, 20);
@@ -102,7 +110,6 @@ public class Player : LivingEntity
             health = startingHealth;
         else
             health += randomHealth;
-        print("Player Health : " + health);
     }
     public float getHealth()
     {

@@ -11,8 +11,7 @@ public class UIControl : MonoBehaviour
 
     [SerializeField] TMP_Text health;
     [SerializeField] TMP_Text ammo;
-
-    //[SerializeField] Image crossbow;
+    
     [SerializeField] GameObject crossbow;
     [SerializeField] Image redKey;
     [SerializeField] Image blueKey;
@@ -20,11 +19,12 @@ public class UIControl : MonoBehaviour
     [SerializeField] GameObject arrow;
     void Start()
     {
+        Cursor.visible = false;
+
         player = GameObject.FindObjectOfType<Player>();       
 
         updateValues();
 
-        //crossbow.enabled = false;
         crossbow.SetActive(false);
         redKey.enabled = false;
         blueKey.enabled = false;
@@ -45,15 +45,14 @@ public class UIControl : MonoBehaviour
     void updateValues()
     {
         health.SetText(player.getHealth().ToString());
+
         if (player.getHaveGun() == true)
-            ammo.SetText(gun.getAmmo().ToString());
-        
+            ammo.SetText(gun.getAmmo().ToString());       
     }
 
     void activatedImages()
     {
         if(player.getHaveGun() == true)
-            //crossbow.enabled = true;
             crossbow.SetActive(true);
         if (player.getHaveRedKey() == true)
             redKey.enabled = true;

@@ -9,7 +9,7 @@ public class Gun : MonoBehaviour
     [SerializeField] float arrowSpeed = 10;
     [SerializeField] float delay = 2.5f;
     float nextShootTime;
-    float ammo = 15;
+    [SerializeField] float ammo = 15;
     Animator animator;
     [SerializeField] AudioSource fireSound;
 
@@ -29,7 +29,6 @@ public class Gun : MonoBehaviour
                 Projectile newArrow = Instantiate(arrow, muzzle.position, muzzle.rotation) as Projectile;
                 newArrow.setSpeed(arrowSpeed);
                 ammo--;
-                print("Ammo: " + ammo);
                 fireSound.Play();
             }
             else animator.SetBool("Fire", false);
@@ -51,9 +50,10 @@ public class Gun : MonoBehaviour
     }
     public void addAmmo()
     {
-        int addAmmo = Random.Range(4, 10);
+        int addAmmo = Random.Range(5, 10);
         ammo += addAmmo;
     }
+
 
     public float getAmmo()
     {

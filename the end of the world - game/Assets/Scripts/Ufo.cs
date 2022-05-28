@@ -30,10 +30,10 @@ public class Ufo : MonoBehaviour
             wayPoints[i] = pathHolder.GetChild(i).position;
         }
         StartCoroutine(followPath(wayPoints));
+
         viewAngle = spotLight.spotAngle;
         playerTransform = GameObject.FindWithTag("Player").transform;
         originColor = spotLight.color;
-
         if (playerTransform != null)
         {
             playerRadius = playerTransform.GetComponent<CapsuleCollider>().radius;
@@ -119,8 +119,6 @@ public class Ufo : MonoBehaviour
         laser.SetPosition(0, muzzle.position);
         if (Physics.Linecast(muzzle.position, playerAddRandom, out hit, whatIsPlayer))
         {
-            print("vurulduk");
-            print(hit.collider.gameObject.name);
             IDamageable damageablePlayer = hit.collider.GetComponent<IDamageable>();
             if (damageablePlayer != null)
                 damageablePlayer.TakeHit(100, hit.point);
@@ -148,7 +146,6 @@ public class Ufo : MonoBehaviour
         }
 
         Gizmos.color = Color.green;
-
         Gizmos.DrawRay(transform.position, -transform.up* viewDistance);
     }
 }

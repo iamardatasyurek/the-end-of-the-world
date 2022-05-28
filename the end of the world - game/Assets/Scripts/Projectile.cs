@@ -31,9 +31,7 @@ public class Projectile : MonoBehaviour
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
         if(Physics.Raycast(ray,out hit, distancePerFrame, layerMask, QueryTriggerInteraction.Collide))
-        {
             onHitEnemy(hit.collider,hit.point);
-        }
     }
 
     public void setSpeed(float speed)
@@ -45,10 +43,7 @@ public class Projectile : MonoBehaviour
     {
         IDamageable damageableObj = collider.GetComponent<IDamageable>();
         if(damageableObj != null)
-        {
-            print("Atesssss");
             damageableObj.TakeHit(damage, hitPoint);
-        }
         Destroy(this.gameObject,1f);
     }
 }

@@ -31,7 +31,6 @@ public class FoundedObjects : MonoBehaviour
                 player.setHaveRedKey(true);
                 Destroy(this.gameObject, 0.2f);
             }
-
         }
     }
 

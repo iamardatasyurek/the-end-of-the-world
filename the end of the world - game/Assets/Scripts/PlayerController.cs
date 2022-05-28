@@ -16,16 +16,16 @@ public class PlayerController : MonoBehaviour
     [SerializeField] GameObject flashlight;
     bool isOpen = false;
     
-    // Start is called before the first frame update
     void Start()
     {
+        Cursor.visible = false;
+
         rb = GetComponent<Rigidbody>();
         cameraTransform = Camera.main.transform;
         capsule = GetComponent<CapsuleCollider>();
         playerLenght = capsule.transform.localScale.y;
     }
 
-    // Update is called once per frame
     void Update()
     {
         checkGrounded();
@@ -57,7 +57,6 @@ public class PlayerController : MonoBehaviour
     }
     public void jump(float jumpForce)
     {
-        print(grounded);
         if(grounded)
             rb.AddForce(transform.up * jumpForce);
     }
@@ -79,8 +78,7 @@ public class PlayerController : MonoBehaviour
     {
         if (isOpen == false)
         {
-            flashlight.SetActive(true);
-            
+            flashlight.SetActive(true);          
             isOpen = true;
         }
         else

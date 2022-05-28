@@ -15,13 +15,13 @@ public class GunController : MonoBehaviour
 
     private void Start()
     {
-        //equipGun(testgun);
         player = GameObject.FindObjectOfType<Player>();
     }
 
     private void Update()
     {
-        if (player.getHaveGun() == true && count == 0) {           
+        if (player.getHaveGun() == true && count == 0) 
+        {           
             equipGun(testgun);
             count++;
         }
@@ -58,9 +58,7 @@ public class GunController : MonoBehaviour
                 equippedGun.hidden();
                 player.setHaveGun(true);
                 ammoUI.SetActive(true);
-            }
-            
-        }
-        
+            }          
+        }       
     }
 }

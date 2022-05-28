@@ -7,7 +7,10 @@ public class MainMenuController : MonoBehaviour
 {
     [SerializeField] LoaderScreen loaderScreen;
 
-
+    private void Start()
+    {
+        Cursor.visible = true;
+    }
     public void playGame()
     {
         loaderScreen.LoadScreenMenu(1);

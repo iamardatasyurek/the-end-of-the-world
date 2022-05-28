@@ -14,13 +14,9 @@ public class PauseMenuController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (isPaused)
-            {
                 Resume();
-            }
             else
-            {
                 Pause();
-            }
         }
     }
 
@@ -28,6 +24,7 @@ public class PauseMenuController : MonoBehaviour
     {
         pauseMenu.SetActive(false);
         inGame.SetActive(true);
+        Cursor.visible = false;
 
         Time.timeScale = 1f;
         isPaused = false;
@@ -37,6 +34,7 @@ public class PauseMenuController : MonoBehaviour
     {
         pauseMenu.SetActive(true);
         inGame.SetActive(false);
+        Cursor.visible = true;
 
         Time.timeScale = 0f;
         isPaused = true;

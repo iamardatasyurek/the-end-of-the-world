@@ -13,8 +13,7 @@ public class BurnDeadBody : MonoBehaviour
         {
             circleFire.SetActive(true);
             Destroy(other.gameObject,6.5f);
-            Invoke("endGame", 9f);
-               
+            Invoke("endGame", 9f);              
         }
     }
 
