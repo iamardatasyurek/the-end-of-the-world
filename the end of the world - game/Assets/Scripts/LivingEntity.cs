@@ -18,7 +18,6 @@ public class LivingEntity : MonoBehaviour, IDamageable
     public void TakeHit(float damage, Vector3 position)
     {
         health -= damage;
-        print(gameObject.name+" "+health);
         if (health <= 0 && !dead) {
             dead = true;
             animator.SetBool("isDead", true);

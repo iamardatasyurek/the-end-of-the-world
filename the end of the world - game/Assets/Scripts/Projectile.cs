@@ -22,8 +22,7 @@ public class Projectile : MonoBehaviour
         float distancePerFrame = speed * Time.deltaTime;
         checkCollision(distancePerFrame);
 
-        transform.Translate(Vector3.forward * distancePerFrame, Space.Self);
-        
+        transform.Translate(Vector3.forward * distancePerFrame, Space.Self);    
     }
 
     private void checkCollision(float distancePerFrame)
@@ -31,7 +30,11 @@ public class Projectile : MonoBehaviour
         Ray ray = new Ray(transform.position, transform.forward);
         RaycastHit hit;
         if(Physics.Raycast(ray,out hit, distancePerFrame, layerMask, QueryTriggerInteraction.Collide))
-            onHitEnemy(hit.collider,hit.point);
+        {
+            onHitEnemy(hit.collider, hit.point);
+            Destroy(this.gameObject);
+        }
+           
     }
 
     public void setSpeed(float speed)
@@ -43,7 +46,6 @@ public class Projectile : MonoBehaviour
     {
         IDamageable damageableObj = collider.GetComponent<IDamageable>();
         if(damageableObj != null)
-            damageableObj.TakeHit(damage, hitPoint);
-        Destroy(this.gameObject,1f);
+            damageableObj.TakeHit(damage, hitPoint);       
     }
 }
